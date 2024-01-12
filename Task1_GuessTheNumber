@@ -1,0 +1,60 @@
+//This is a small "Guess the Number" java project using the features of OOPS
+import java.util.Random;
+import java.util.Scanner;
+
+class GuessTheNumber
+{
+    public int noOfGuesses=0;
+    public int compInput;
+    public int userInput;
+    public int getNoOfGuesses()
+    {
+        return noOfGuesses;
+    }
+    public void setNoOfGuesses(int noOfGuesses)
+    {
+        this.noOfGuesses=noOfGuesses;
+
+    }
+    //The constructor method will generate the random number between 1-100
+    GuessTheNumber() {
+        Random random = new Random();
+        this.compInput = random.nextInt(100);
+        System.out.println("Guess the number from 1 to 100");
+    }
+    //This method will take the input from the user
+    void input() {
+        Scanner sc=new Scanner(System.in);
+        userInput=sc.nextInt();
+    }
+    //isCorrect() method will check if the guessed number is right or wrong
+    boolean isCorrect() {
+        noOfGuesses += 1;
+        if (userInput == compInput) {
+            System.out.println("You Guessed it right.Hurray!");
+            System.out.println("The number was " + compInput);
+            System.out.println("You guessed it in " + noOfGuesses + " attempts");
+        }
+        else if (userInput < compInput) {
+            System.out.println("You guessed a lesser number. Try Again!");
+        }
+        else if (userInput > compInput){
+            System.out.println("You guessed a larger number.Try Again!");
+        }
+        return false;
+    }
+}
+class Demo
+{
+    public static void main(String[] args)
+    {
+        GuessTheNumber g=new GuessTheNumber();
+        boolean b=false;
+        while(!b)
+        {
+            g.input();
+            b = g.isCorrect();
+        }
+
+    }
+}
